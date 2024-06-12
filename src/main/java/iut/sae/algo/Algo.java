@@ -3,49 +3,66 @@ package iut.sae.algo;
 
 public class Algo{
     public static String RLE(String in){
-        String res = ""; 
-        int frequence = 0; 
-        /*char tab [] =  new char[in.length()+1]; 
-        int i;
-        for (i =0 ; i < in.length(); i++) {
-           tab[i]= in.charAt(i); 
-        }
-        for (i = 0; i< tab.length; i++){
-            while (tab[i] == tab[i+1]){
-                frequence ++; 
+        String res ="";
+        int i=0;
+        int frequence =1;
+
+        while(i<in.length()-1 && in!="") {
+            if (in.charAt(i)==in.charAt(i+1)){
+                frequence++;
+            }else{
+                res=res+frequence+in.charAt(i);
+                frequence=1;
             }
-            res = res + frequence +tab[i]; 
-        }
-        System.out.println(tab);
-        return res; */
-        int i = 0; 
-        int taille = in.length() +1 ; 
-        while(i < taille){ 
-            while (in.charAt(i) == in.charAt(i+1)) {
-                frequence ++;  
-                i++; 
+
+            if (frequence>9) {
+                res=res+9+in.charAt(i);
+                frequence=1;
             }
-            res = res + frequence + in.charAt(i); 
-            i = frequence; 
+            i++;
         }
-        return res; 
+
+        if (in!=""){
+            res=res+frequence+in.charAt(i);
+        }
+
+        return res;
+    
     }
 
     public static String RLE(String in, int iteration) throws AlgoException{
-        // Provide your algo here
-        return "NotYetImplemented";
+        String res =""; 
+        res = res+ RLE(in);
+        for (int i = 0; i < iteration-1; i++){
+            res = RLE(res);  
+        }
+       return res; 
     }
 
     public static String unRLE(String in) throws AlgoException{
-        // Provide your algo here
-        return "NotYetImplemented";
+        String res ="";
+        int i=0;
+
+        while(i<in.length()-1 && in!="")
+        {
+            int nbc=Integer.parseInt(String.valueOf(in.charAt(i)));
+            for(int j= 0; j<nbc; j++)
+            {
+                res=res+in.charAt(i+1);
+            }
+            i=i+2;
+        }
+        return res;
 
     }
 
     public static String unRLE(String in, int iteration) throws AlgoException{
-        // Provide your algo here
-        return "NotYetImplemented";
-
+        String res = ""; 
+        res= res+unRLE(in); 
+        for (int i =0; i<iteration -1; i++){
+            res= unRLE(res); 
+        }
+        return res; 
     }
 }
 
