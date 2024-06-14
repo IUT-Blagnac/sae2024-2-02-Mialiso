@@ -2,6 +2,12 @@ package iut.sae.algo;
 
 
 public class Algo{
+    /**
+     * Compresse une chaîne de caractères 
+     *
+     * @param in la chaîne de caractères à compresser
+     * @return la chaîne compressée
+     */
     public static String RLE(String in){
         String res ="";
         int i=0;
@@ -27,6 +33,14 @@ public class Algo{
     
     }
 
+     /**
+     * Compresse une chaîne de caractères en utilisant l'algorithme de Run-Length Encoding (RLE) de manière récursive.
+     *
+     * @param in la chaîne de caractères à compresser
+     * @param iteration le nombre d'itérations de compression
+     * @return la chaîne compressée après le nombre d'itérations spécifié
+     * @throws AlgoException si une erreur se produit lors de la compression
+     */
     public static String RLE(String in, int iteration) throws AlgoException{
         if (iteration==1){
             return RLE(in);
@@ -35,6 +49,13 @@ public class Algo{
         } 
     }
 
+    /**
+     * Décompresse une chaîne de caractères 
+     *
+     * @param in la chaîne de caractères à décompresser
+     * @return la chaîne décompressée
+     * @throws AlgoException si une erreur se produit lors de la décompression
+     */
     public static String unRLE(String in) throws AlgoException{
         String res ="";
         int i=0;
@@ -49,6 +70,14 @@ public class Algo{
 
     }
 
+    /**
+     * Décompresse une chaîne de caractères en utilisant l'algorithme de Run-Length Encoding (RLE) de manière récursive.
+     *
+     * @param in la chaîne de caractères à décompresser
+     * @param iteration le nombre d'itérations de décompression
+     * @return la chaîne décompressée après le nombre d'itérations spécifié
+     * @throws AlgoException si une erreur se produit lors de la décompression
+     */
     public static String unRLE(String in, int iteration) throws AlgoException{
         if (iteration==1){
             return unRLE(in);
